@@ -148,4 +148,3 @@ export default function IdynifyHomepage() {
           <div className="text-6xl mb-8">🚀</div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Launch?</h2>
           
-          
