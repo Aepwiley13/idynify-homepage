@@ -5,17 +5,20 @@ export default defineConfig({
   plugins: [react()],
 })
 ```
-4. Click **"Commit new file"**
+
+**That's it! Just those 5 lines!**
+
+### **Step 3: Commit**
+1. Scroll down
+2. Click **"Commit changes"**
+3. Add commit message: "Fix vite.config.js - remove invalid characters"
+4. Click **"Commit changes"**
 
 ---
 
-## **✅ When you're done, your repository should look like this:**
+## **✅ What Happened:**
+
+When I gave you the code earlier, I included commented folder structure like:
 ```
-idynify-homepage/
-├── src/
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-├── index.html
-├── package.json
-└── vite.config.js
+// ├── src/
+// └── index.html
