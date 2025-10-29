@@ -148,3 +148,114 @@ export default function IdynifyHomepage() {
           <div className="text-6xl mb-8">🚀</div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Launch?</h2>
           
+          <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 max-w-md mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-6">Launch Sequence</h3>
+            <div className="space-y-4">
+              <input type="text" placeholder="Your Name" className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-pink-500 focus:outline-none" />
+              <input type="email" placeholder="Email" className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-pink-500 focus:outline-none" />
+              <button className="w-full px-8 py-4 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-xl font-bold hover:shadow-2xl transition-all">
+                Build My ICP Brief
+                <Sparkles className="inline-block ml-2 w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-800 py-12">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-cyan-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold">🐻</span>
+            </div>
+            <span className="text-white font-bold text-xl">IDYNIFY</span>
+          </div>
+          <p className="text-slate-400 text-sm">© 2025 Idynify. Mission Control for B2B Sales</p>
+        </div>
+      </footer>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(15deg); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+// ============================================
+// FILE 2: src/main.jsx
+// ============================================
+// import React from 'react'
+// import ReactDOM from 'react-dom/client'
+// import App from './App.jsx'
+// import './index.css'
+
+// ReactDOM.createRoot(document.getElementById('root')).render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>,
+// )
+
+// ============================================
+// FILE 3: src/index.css
+// ============================================
+// @import url('https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css');
+
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
+
+// ============================================
+// FILE 4: package.json (root)
+// ============================================
+// {
+//   "name": "idynify-homepage",
+//   "private": true,
+//   "version": "0.0.0",
+//   "type": "module",
+//   "scripts": {
+//     "dev": "vite",
+//     "build": "vite build",
+//     "preview": "vite preview"
+//   },
+//   "dependencies": {
+//     "react": "^18.2.0",
+//     "react-dom": "^18.2.0",
+//     "lucide-react": "^0.263.1"
+//   },
+//   "devDependencies": {
+//     "@vitejs/plugin-react": "^4.3.9",
+//     "vite": "^5.0.8"
+//   }
+// }
+
+// ============================================
+// FILE 5: index.html (root)
+// ============================================
+// <!doctype html>
+// <html lang="en">
+//   <head>
+//     <meta charset="UTF-8" />
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+//     <title>Idynify - AI Sales Agent</title>
+//   </head>
+//   <body>
+//     <div id="root"></div>
+//     <script type="module" src="/src/main.jsx"></script>
+//   </body>
+// </html>
+
+// ============================================
+// FILE 6: vite.config.js (root)
+// ============================================
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
+
+// export default defineConfig({
+//   plugins: [react()],
+// })
