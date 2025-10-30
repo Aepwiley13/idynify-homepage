@@ -1,38 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Rocket, Target, Zap, TrendingUp, Users, CheckCircle, ArrowRight, Menu, X, Star, BarChart3, MessageSquare, Upload, UserCheck, Sparkles } from 'lucide-react';
-
-export default function IdynifyHomepage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    setMobileMenuOpen(false);
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/95 backdrop-blur-lg shadow-xl' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-cyan-500 rounded-xl flex items-center justify-center transform hover:scale-110 transition-transform">
-                <span className="text-white font-bold text-lg">🐻</span>
-              </div>
-              <span className="text-white font-bold text-2xl tracking-wider italic bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent">
-                IDYNIFY
-              </span>
-            </div>
-
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-8">
+  <div className="hidden md:flex items-center gap-8">
               <button onClick={() => scrollToSection('how-it-works')} className="text-slate-300 hover:text-white transition-colors">How It Works</button>
               <button onClick={() => scrollToSection('pricing')} className="text-slate-300 hover:text-white transition-colors">Pricing</button>
               <button onClick={() => scrollToSection('contact')} className="text-slate-300 hover:text-white transition-colors">Contact</button>
@@ -64,16 +30,10 @@ export default function IdynifyHomepage() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute w-96 h-96 bg-pink-500/20 rounded-full blur-3xl -top-48 -left-48 animate-pulse"></div>
-          <div className="absolute w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl -bottom-48 -right-48 animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute w-64 h-64 bg-purple-500/20 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" style={{animationDelay: '2s'}}></div>
-          
-          {/* Stars */}
-          <div className="absolute top-20 left-10 text-white/30 text-xl animate-pulse">✨</div>
-          <div className="absolute top-40 right-20 text-white/30 text-2xl animate-pulse" style={{animationDelay: '0.5s'}}>⭐</div>
-          <div className="absolute bottom-40 left-1/4 text-white/30 text-xl animate-pulse" style={{animationDelay: '1s'}}>✨</div>
-          <div className="absolute top-1/3 right-1/4 text-white/30 text-2xl animate-pulse" style={{animationDelay: '1.5s'}}>⭐</div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute w-96 h-96 bg-pink-500/10 rounded-full blur-3xl -top-48 -left-48"></div>
+          <div className="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -bottom-48 -right-48"></div>
+          <div className="absolute w-64 h-64 bg-purple-500/10 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 text-center">
@@ -179,7 +139,7 @@ export default function IdynifyHomepage() {
                   '→ OR: Let us source leads (Tier 2)'
                 ],
                 color: 'pink',
-                price: '$500-$1,500 one-time'
+                price: 'Starting at $49.99/month'
               },
               {
                 step: '02',
@@ -197,7 +157,7 @@ export default function IdynifyHomepage() {
                   '→ OR: Autopilot outreach (Tier 3)'
                 ],
                 color: 'purple',
-                price: '$100-$300/month'
+                price: 'Starting at $99.99/month'
               },
               {
                 step: '03',
@@ -215,7 +175,7 @@ export default function IdynifyHomepage() {
                   '→ You focus on closing only'
                 ],
                 color: 'cyan',
-                price: '$500-$1,500/month'
+                price: 'Starting at $149.99/month'
               }
             ].map((item, i) => (
               <div key={i} className="relative group">
@@ -271,9 +231,12 @@ export default function IdynifyHomepage() {
               {
                 tier: 'Tier 1',
                 name: 'ICP Brief',
-                price: '$500-$1,500',
-                period: 'one-time',
+                price: '$49.99',
+                period: '/month',
+                priceStart: 'Starting at',
                 description: 'Define your mission parameters',
+                priceDetail: 'Custom pricing available for businesses',
+                landingPage: '/icp-brief', // Future landing page URL
                 features: [
                   'Complete ICP analysis & scoring',
                   'Messaging guidelines & positioning',
@@ -289,9 +252,12 @@ export default function IdynifyHomepage() {
               {
                 tier: 'Tier 2',
                 name: 'Lead Delivery',
-                price: '$100-$300',
+                price: '$99.99',
                 period: '/month',
+                priceStart: 'Starting at',
                 description: 'We source leads on your behalf',
+                priceDetail: 'Custom pricing available for businesses',
+                landingPage: '/lead-delivery', // Future landing page URL
                 features: [
                   '90 leads per month (3/day)',
                   'Complete lead profiles & contact info',
@@ -301,15 +267,18 @@ export default function IdynifyHomepage() {
                   'DIY outreach or upgrade to Tier 3'
                 ],
                 cta: 'Get Leads Delivered',
-                popular: true,
+                popular: false,
                 gradient: 'from-purple-500 to-purple-600'
               },
               {
                 tier: 'Tier 3',
                 name: 'AI Outreach',
-                price: '$500-$1,500',
+                price: '$149.99',
                 period: '/month',
+                priceStart: 'Starting at',
                 description: 'Full autopilot - save 80% of your time',
+                priceDetail: 'Custom pricing available for businesses',
+                landingPage: '/ai-outreach', // Future landing page URL
                 features: [
                   'AI handles all outreach for you',
                   'Multi-channel (email, SMS, LinkedIn)',
@@ -319,24 +288,37 @@ export default function IdynifyHomepage() {
                   'Calling scripts when leads respond'
                 ],
                 cta: 'Engage Autopilot',
-                popular: false,
+                popular: true,
                 gradient: 'from-cyan-500 to-cyan-600'
               }
             ].map((tier, i) => (
-              <div key={i} className={`relative ${tier.popular ? 'md:-mt-4' : ''}`}>
+              <div key={i} className={`relative ${tier.popular ? 'md:-mt-8 md:mb-8' : ''}`}>
                 {tier.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-pink-500 to-cyan-500 text-white text-sm font-bold rounded-full">
-                    MOST POPULAR
+                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 px-4 py-1.5 bg-gradient-to-r from-pink-500 to-cyan-500 text-white text-sm font-bold rounded-full z-10 shadow-lg">
+                    ⭐ MOST POPULAR
                   </div>
                 )}
-                <div className={`bg-slate-800/50 backdrop-blur-sm border-2 ${tier.popular ? 'border-pink-500' : 'border-slate-700'} rounded-2xl p-8 hover:border-pink-500/50 transition-all h-full flex flex-col`}>
+                <button 
+                  onClick={() => {
+                    // Will navigate to landing pages when created
+                    // For now, scroll to contact
+                    scrollToSection('contact');
+                  }}
+                  className={`w-full bg-slate-800/50 backdrop-blur-sm border-2 ${tier.popular ? 'border-pink-500' : 'border-slate-700'} rounded-2xl p-8 hover:border-pink-500 hover:shadow-2xl hover:shadow-pink-500/20 transition-all h-full flex flex-col text-left transform hover:scale-105 cursor-pointer`}
+                >
                   <div className="mb-6">
                     <div className="text-sm font-semibold text-slate-400 mb-2">{tier.tier}</div>
                     <h3 className="text-3xl font-bold text-white mb-2">{tier.name}</h3>
-                    <div className="flex items-baseline gap-1 mb-4">
+                    {tier.priceStart && (
+                      <div className="text-xs text-slate-400 mb-1">{tier.priceStart}</div>
+                    )}
+                    <div className="flex items-baseline gap-1 mb-2">
                       <span className="text-4xl font-bold text-white">{tier.price}</span>
                       <span className="text-slate-400 text-sm">{tier.period}</span>
                     </div>
+                    {tier.priceDetail && (
+                      <p className="text-xs text-slate-400 mb-3 leading-relaxed">{tier.priceDetail}</p>
+                    )}
                     <p className="text-slate-300">{tier.description}</p>
                   </div>
 
@@ -351,10 +333,11 @@ export default function IdynifyHomepage() {
                     </div>
                   </div>
 
-                  <button onClick={() => scrollToSection('contact')} className={`block text-center px-6 py-4 bg-gradient-to-r ${tier.gradient} text-white rounded-xl font-bold hover:shadow-xl hover:shadow-pink-500/30 transition-all transform hover:scale-105`}>
-                    {tier.cta}
-                  </button>
-                </div>
+                  <div className={`px-6 py-4 bg-gradient-to-r ${tier.gradient} text-white rounded-xl font-bold text-center flex items-center justify-center gap-2 group-hover:shadow-xl transition-all`}>
+                    <span>{tier.cta}</span>
+                    <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </button>
               </div>
             ))}
           </div>
