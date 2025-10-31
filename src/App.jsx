@@ -1,4 +1,44 @@
-  <div className="hidden md:flex items-center gap-8">
+import React, { useState, useEffect } from 'react';
+import { Rocket, Target, Zap, TrendingUp, Users, CheckCircle, ArrowRight, Menu, X, Star, BarChart3, MessageSquare, Upload, UserCheck, Sparkles } from 'lucide-react';
+
+// NOTE: Pricing cards are now clickable buttons
+// When ready to add landing pages:
+// 1. Create separate page files: icp-brief.jsx, lead-delivery.jsx, ai-outreach.jsx
+// 2. Update the onClick handler in the pricing section to navigate to these pages
+// 3. Landing page URLs are already defined in the tier objects (landingPage property)
+
+export default function IdynifyHomepage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenuOpen(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Navigation */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/95 backdrop-blur-lg shadow-xl' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-cyan-500 rounded-xl flex items-center justify-center transform hover:scale-110 transition-transform">
+                <span className="text-white font-bold text-lg">🐻</span>
+              </div>
+              <span className="text-white font-bold text-2xl tracking-wider italic bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent">
+                IDYNIFY
+              </span>
+            </div>
+
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-8">
               <button onClick={() => scrollToSection('how-it-works')} className="text-slate-300 hover:text-white transition-colors">How It Works</button>
               <button onClick={() => scrollToSection('pricing')} className="text-slate-300 hover:text-white transition-colors">Pricing</button>
               <button onClick={() => scrollToSection('contact')} className="text-slate-300 hover:text-white transition-colors">Contact</button>
