@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import IdynifyHomepage from './IdynifyHomepage';
-import MountainsideICP from './MountainsideICP';
+import IdynifyHomepage from './IdynifyHomepage.jsx';
+import MountainsideICP from './MountainsideICP.jsx';
 
 function App() {
   return (
