@@ -35,46 +35,123 @@ const MountainsideICP = () => {
 
   if (!isUnlocked) {
     return (
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-10 max-w-md w-full">
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4 overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute w-96 h-96 bg-pink-500/10 rounded-full blur-3xl -top-48 -left-48 animate-pulse"></div>
+          <div className="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -bottom-48 -right-48 animate-pulse"></div>
+          <div className="absolute w-64 h-64 bg-purple-500/20 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
+
+        <div className="relative z-10 bg-slate-900/80 backdrop-blur-xl border-2 border-pink-500/30 rounded-3xl shadow-2xl p-10 max-w-2xl w-full">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-slate-800 to-slate-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
-              <LucideIcons.Lock className="w-10 h-10 text-white" />
+            {/* Mission Control Badge */}
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500/20 to-cyan-500/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-pink-500/30">
+              <LucideIcons.Zap className="w-4 h-4 text-cyan-400" />
+              <span className="text-sm font-semibold text-cyan-300">MISSION CONTROL</span>
             </div>
-            <h1 className="text-3xl font-bold text-slate-900 mb-3">Access Required</h1>
-            <p className="text-slate-600">Enter your password to view the ICP Brief</p>
+
+            {/* Barry the Space Bear */}
+            <div className="mb-6 flex justify-center">
+              <div className="relative">
+                <div className="text-8xl animate-bounce" style={{animationDuration: '2s'}}>🐻</div>
+                <div className="absolute -top-4 -right-6 text-4xl animate-spin" style={{animationDuration: '3s'}}>🚀</div>
+                <div className="absolute -bottom-2 -left-6 text-3xl animate-pulse">✨</div>
+                <div className="absolute -top-2 -left-8 text-2xl animate-pulse" style={{animationDelay: '0.5s'}}>⭐</div>
+              </div>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                MISSION BRIEFING
+              </span>
+            </h1>
+            <p className="text-xl text-slate-300 mb-3">Your ICP is Ready for Launch 🎯</p>
+            <p className="text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
+              Barry has analyzed your ideal customer and charted the course. Enter your access code to unlock your personalized go-to-market strategy.
+            </p>
+          </div>
+
+          {/* Mission Status */}
+          <div className="grid grid-cols-3 gap-3 mb-8">
+            <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-xl p-4 text-center">
+              <LucideIcons.CheckCircle className="w-6 h-6 text-green-400 mx-auto mb-2" />
+              <p className="text-xs text-green-300 font-semibold">ICP COMPLETE</p>
+            </div>
+            <div className="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/30 rounded-xl p-4 text-center">
+              <LucideIcons.Target className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+              <p className="text-xs text-blue-300 font-semibold">LEADS READY</p>
+            </div>
+            <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-xl p-4 text-center">
+              <LucideIcons.Rocket className="w-6 h-6 text-purple-400 mx-auto mb-2" />
+              <p className="text-xs text-purple-300 font-semibold">READY TO LAUNCH</p>
+            </div>
           </div>
           
           <form onSubmit={handlePasswordSubmit} className="space-y-6">
             <div>
-              <label htmlFor="password-input" className="block text-sm font-semibold text-slate-700 mb-2">
-                Password
+              <label htmlFor="password-input" className="block text-sm font-bold text-cyan-300 mb-3 uppercase tracking-wide flex items-center gap-2">
+                <LucideIcons.Lock className="w-4 h-4" />
+                MISSION ACCESS CODE
               </label>
               <input
                 type="password"
                 id="password-input"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-slate-800 focus:outline-none transition-colors text-lg"
-                placeholder="Enter password"
+                className="w-full px-6 py-4 bg-slate-800/50 border-2 border-purple-500/30 rounded-xl focus:border-pink-500 focus:outline-none transition-all text-lg text-white placeholder-slate-500 font-mono backdrop-blur-sm"
+                placeholder="Enter access code..."
                 autoComplete="off"
               />
               {showError && (
-                <p className="text-red-500 text-sm mt-2">Incorrect password. Please try again.</p>
+                <div className="mt-3 p-3 bg-red-500/20 border border-red-500/30 rounded-lg flex items-center gap-2">
+                  <LucideIcons.AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                  <p className="text-red-300 text-sm font-semibold">ACCESS DENIED - Invalid code. Try again!</p>
+                </div>
               )}
             </div>
             
             <button
               type="submit"
-              className="w-full bg-slate-800 hover:bg-slate-900 text-white font-semibold py-4 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl"
+              className="w-full bg-gradient-to-r from-pink-500 to-cyan-500 hover:from-pink-600 hover:to-cyan-600 text-white font-bold py-5 px-8 rounded-xl transition-all shadow-lg hover:shadow-pink-500/50 text-lg group relative overflow-hidden"
             >
-              Access Content
+              <span className="relative z-10 flex items-center justify-center gap-3">
+                <LucideIcons.Rocket className="w-6 h-6 group-hover:animate-bounce" />
+                INITIATE LAUNCH SEQUENCE
+                <LucideIcons.ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </button>
           </form>
+
+          {/* What's Inside Preview */}
+          <div className="mt-8 pt-8 border-t border-slate-700">
+            <p className="text-xs text-slate-400 text-center mb-4 uppercase tracking-wider font-semibold">🎯 MISSION OBJECTIVES UNLOCKED</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+              <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-700">
+                <p className="text-2xl mb-1">📊</p>
+                <p className="text-xs text-slate-400 font-medium">ICP Analysis</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-700">
+                <p className="text-2xl mb-1">🎯</p>
+                <p className="text-xs text-slate-400 font-medium">Target Leads</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-700">
+                <p className="text-2xl mb-1">💬</p>
+                <p className="text-xs text-slate-400 font-medium">Messaging</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-700">
+                <p className="text-2xl mb-1">🚀</p>
+                <p className="text-xs text-slate-400 font-medium">Action Plan</p>
+              </div>
+            </div>
+          </div>
           
-          <div className="mt-8 pt-6 border-t border-slate-200 text-center">
-            <p className="text-xs text-slate-500 mb-2">Powered by</p>
-            <p className="text-lg font-bold text-slate-900">Idynify</p>
+          <div className="mt-6 text-center">
+            <div className="inline-flex items-center gap-2 text-slate-500 text-xs">
+              <LucideIcons.Sparkles className="w-4 h-4 text-cyan-400" />
+              <span>Powered by <span className="font-bold bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent">Barry AI</span></span>
+            </div>
           </div>
         </div>
       </div>
@@ -82,26 +159,35 @@ const MountainsideICP = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute w-96 h-96 bg-pink-500/10 rounded-full blur-3xl -top-48 -left-48 animate-pulse"></div>
+        <div className="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -bottom-48 -right-48 animate-pulse"></div>
+        <div className="absolute w-64 h-64 bg-purple-500/20 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+      </div>
+
+      {/* Content Wrapper */}
+      <div className="relative z-10">
       {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-slate-200">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-purple-500/20">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-cyan-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">I</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-900">Idynify</h1>
-                <p className="text-xs text-slate-500">Ideal Customer Profile Brief</p>
+                <h1 className="text-xl font-bold text-white">Idynify</h1>
+                <p className="text-xs text-slate-400">Ideal Customer Profile Brief</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="hidden md:flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-lg">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                <span className="text-xs font-semibold text-emerald-700">Live Document</span>
+              <div className="hidden md:flex items-center gap-2 bg-emerald-500/20 px-3 py-1.5 rounded-lg border border-emerald-500/30">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <span className="text-xs font-semibold text-emerald-300">Live Document</span>
               </div>
-              <a href="/" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+              <a href="/" className="text-sm text-slate-300 hover:text-white transition-colors">
                 Back to Home
               </a>
             </div>
@@ -138,7 +224,7 @@ const MountainsideICP = () => {
       </section>
 
       {/* Navigation Tabs */}
-      <section className="bg-white border-b border-slate-200 sticky top-[73px] z-40">
+      <section className="bg-slate-900/50 backdrop-blur-sm border-b border-purple-500/20 sticky top-[73px] z-40">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex overflow-x-auto gap-1 py-2">
             {[
@@ -156,8 +242,8 @@ const MountainsideICP = () => {
                 onClick={() => showSection(section.id)}
                 className={`px-4 py-2.5 text-sm font-medium rounded-lg whitespace-nowrap transition-all ${
                   activeSection === section.id
-                    ? 'bg-slate-900 text-white'
-                    : 'text-slate-600 hover:bg-slate-100'
+                    ? 'bg-gradient-to-r from-pink-500 to-cyan-500 text-white'
+                    : 'text-slate-300 hover:bg-white/10'
                 }`}
               >
                 {section.name}
@@ -202,14 +288,14 @@ const MountainsideICP = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <div className="bg-white border-2 border-green-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+              <div className="bg-slate-800/50 backdrop-blur-sm border-2 border-green-500/30 rounded-2xl p-6 hover:shadow-lg hover:shadow-green-500/20 transition-shadow">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                    <LucideIcons.CheckCircle2 className="w-6 h-6 text-green-600" />
+                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center border border-green-500/30">
+                    <LucideIcons.CheckCircle2 className="w-6 h-6 text-green-400" />
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900">Perfect Fit Indicators</h4>
+                  <h4 className="text-lg font-bold text-white">Perfect Fit Indicators</h4>
                 </div>
-                <ul className="space-y-3 text-sm text-slate-700">
+                <ul className="space-y-3 text-sm text-slate-300">
                   <li className="flex items-start gap-2">
                     <span className="text-green-600 mt-0.5">•</span>
                     <span>Maverick leaders who break stereotypes</span>
@@ -233,14 +319,14 @@ const MountainsideICP = () => {
                 </ul>
               </div>
 
-              <div className="bg-white border-2 border-red-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+              <div className="bg-slate-800/50 backdrop-blur-sm border-2 border-red-500/30 rounded-2xl p-6 hover:shadow-lg hover:shadow-red-500/20 transition-shadow">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
-                    <LucideIcons.XCircle className="w-6 h-6 text-red-600" />
+                  <div className="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center border border-red-500/30">
+                    <LucideIcons.XCircle className="w-6 h-6 text-red-400" />
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900">Anti-Profile (Avoid)</h4>
+                  <h4 className="text-lg font-bold text-white">Anti-Profile (Avoid)</h4>
                 </div>
-                <ul className="space-y-3 text-sm text-slate-700">
+                <ul className="space-y-3 text-sm text-slate-300">
                   <li className="flex items-start gap-2">
                     <span className="text-red-600 mt-0.5">•</span>
                     <span>Large bureaucratic enterprises seeking compliance training</span>
@@ -265,9 +351,9 @@ const MountainsideICP = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl border border-slate-200 p-8">
-              <h4 className="text-xl font-bold text-slate-900 mb-4">Key Insight: Mindset Over Firmographics</h4>
-              <p className="text-slate-700 mb-6 leading-relaxed">
+            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-purple-500/30 p-8">
+              <h4 className="text-xl font-bold text-white mb-4">Key Insight: Mindset Over Firmographics</h4>
+              <p className="text-slate-300 mb-6 leading-relaxed">
                 After analyzing successful vs unsuccessful engagements, Mountainside discovered that <strong>mindset matters more than company size or industry</strong>. The best clients share four core characteristics:
               </p>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -1293,6 +1379,8 @@ const MountainsideICP = () => {
           </div>
         </div>
       </footer>
+      </div>
+      {/* End Content Wrapper */}
 
       <style jsx>{`
         @keyframes fadeIn {
