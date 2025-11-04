@@ -35,15 +35,17 @@ const MountainsideICP = () => {
 
   if (!isUnlocked) {
     return (
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4 overflow-y-auto">
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-y-auto">
         {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
           <div className="absolute w-96 h-96 bg-pink-500/10 rounded-full blur-3xl -top-48 -left-48 animate-pulse"></div>
           <div className="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -bottom-48 -right-48 animate-pulse"></div>
           <div className="absolute w-64 h-64 bg-purple-500/20 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
         </div>
 
-        <div className="relative z-10 bg-slate-900/80 backdrop-blur-xl border-2 border-pink-500/30 rounded-3xl shadow-2xl p-10 max-w-2xl w-full my-8">
+        {/* Content Container */}
+        <div className="min-h-screen flex items-center justify-center p-4 py-12">
+          <div className="relative z-10 bg-slate-900/80 backdrop-blur-xl border-2 border-pink-500/30 rounded-3xl shadow-2xl p-8 md:p-10 max-w-2xl w-full">
           <div className="text-center mb-8">
             {/* Mission Control Badge */}
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500/20 to-cyan-500/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-pink-500/30">
@@ -152,6 +154,7 @@ const MountainsideICP = () => {
               <LucideIcons.Sparkles className="w-4 h-4 text-cyan-400" />
               <span>Powered by <span className="font-bold bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent">Barry AI</span></span>
             </div>
+          </div>
           </div>
         </div>
       </div>
