@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Rocket, Target, Zap, TrendingUp, Users, CheckCircle, ArrowRight, Menu, X, Star, BarChart3, MessageSquare, Upload, UserCheck, Sparkles } from 'lucide-react';
 
-// NOTE: Pricing cards are now clickable buttons
-// When ready to add landing pages:
-// 1. Create separate page files: icp-brief.jsx, lead-delivery.jsx, ai-outreach.jsx
-// 2. Update the onClick handler in the pricing section to navigate to these pages
-// 3. Landing page URLs are already defined in the tier objects (landingPage property)
+// ALL CTA BUTTONS NOW LINK TO TYPEFORM: https://form.typeform.com/to/K2Wh2A2W
 
 export default function IdynifyHomepage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,6 +17,9 @@ export default function IdynifyHomepage() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMobileMenuOpen(false);
   };
+
+  // Typeform URL for all CTAs
+  const typeformURL = 'https://form.typeform.com/to/K2Wh2A2W';
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -42,7 +41,7 @@ export default function IdynifyHomepage() {
               <button onClick={() => scrollToSection('how-it-works')} className="text-slate-300 hover:text-white transition-colors">How It Works</button>
               <button onClick={() => scrollToSection('pricing')} className="text-slate-300 hover:text-white transition-colors">Pricing</button>
               <button onClick={() => scrollToSection('contact')} className="text-slate-300 hover:text-white transition-colors">Contact</button>
-              <button onClick={() => scrollToSection('contact')} className="px-6 py-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-pink-500/50 transition-all">
+              <button onClick={() => window.location.href=typeformURL} className="px-6 py-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-pink-500/50 transition-all">
                 Get Started
               </button>
             </div>
@@ -59,7 +58,7 @@ export default function IdynifyHomepage() {
               <button onClick={() => scrollToSection('how-it-works')} className="block text-slate-300 hover:text-white transition-colors w-full text-left">How It Works</button>
               <button onClick={() => scrollToSection('pricing')} className="block text-slate-300 hover:text-white transition-colors w-full text-left">Pricing</button>
               <button onClick={() => scrollToSection('contact')} className="block text-slate-300 hover:text-white transition-colors w-full text-left">Contact</button>
-              <button onClick={() => scrollToSection('contact')} className="block px-6 py-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-lg font-semibold text-center w-full">
+              <button onClick={() => window.location.href=typeformURL} className="block px-6 py-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-lg font-semibold text-center w-full">
                 Get Started
               </button>
             </div>
@@ -118,11 +117,11 @@ export default function IdynifyHomepage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={() => scrollToSection('contact')} className="px-8 py-4 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition-all transform hover:scale-105">
-                Build Your ICP Now
+              <button onClick={() => window.location.href=typeformURL} className="px-8 py-4 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition-all transform hover:scale-105">
+                Build Your ICP Now 🚀
                 <ArrowRight className="inline-block ml-2 w-5 h-5" />
               </button>
-              <button onClick={() => scrollToSection('contact')} className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-xl font-bold text-lg border-2 border-white/20 hover:bg-white/20 transition-all">
+              <button onClick={() => window.location.href=typeformURL} className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-xl font-bold text-lg border-2 border-white/20 hover:bg-white/20 transition-all">
                 Schedule Discovery Call
               </button>
             </div>
@@ -276,7 +275,6 @@ export default function IdynifyHomepage() {
                 priceStart: 'Starting at',
                 description: 'Define your mission parameters',
                 priceDetail: 'Custom pricing available for businesses',
-                landingPage: '/icp-brief', // Future landing page URL
                 features: [
                   'Complete ICP analysis & scoring',
                   'Messaging guidelines & positioning',
@@ -297,7 +295,6 @@ export default function IdynifyHomepage() {
                 priceStart: 'Starting at',
                 description: 'We source leads on your behalf',
                 priceDetail: 'Custom pricing available for businesses',
-                landingPage: '/lead-delivery', // Future landing page URL
                 features: [
                   '90 leads per month (3/day)',
                   'Complete lead profiles & contact info',
@@ -318,7 +315,6 @@ export default function IdynifyHomepage() {
                 priceStart: 'Starting at',
                 description: 'Full autopilot - save 80% of your time',
                 priceDetail: 'Custom pricing available for businesses',
-                landingPage: '/ai-outreach', // Future landing page URL
                 features: [
                   'AI handles all outreach for you',
                   'Multi-channel (email, SMS, LinkedIn)',
@@ -339,11 +335,7 @@ export default function IdynifyHomepage() {
                   </div>
                 )}
                 <button 
-                  onClick={() => {
-                    // Will navigate to landing pages when created
-                    // For now, scroll to contact
-                    scrollToSection('contact');
-                  }}
+                  onClick={() => window.location.href=typeformURL}
                   className={`w-full bg-slate-800/50 backdrop-blur-sm border-2 ${tier.popular ? 'border-pink-500' : 'border-slate-700'} rounded-2xl p-8 hover:border-pink-500 hover:shadow-2xl hover:shadow-pink-500/20 transition-all h-full flex flex-col text-left transform hover:scale-105 cursor-pointer`}
                 >
                   <div className="mb-6">
@@ -448,11 +440,11 @@ export default function IdynifyHomepage() {
               ></textarea>
               
               <div className="flex flex-col gap-3">
-                <button className="w-full px-8 py-4 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition-all transform hover:scale-105">
-                  Build My ICP Brief
+                <button onClick={() => window.location.href=typeformURL} className="w-full px-8 py-4 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition-all transform hover:scale-105">
+                  Build My ICP Brief 🚀
                   <Sparkles className="inline-block ml-2 w-5 h-5" />
                 </button>
-                <button className="w-full px-8 py-3 bg-white/10 backdrop-blur-sm text-white rounded-xl font-semibold border-2 border-white/20 hover:bg-white/20 transition-all">
+                <button onClick={() => window.location.href=typeformURL} className="w-full px-8 py-3 bg-white/10 backdrop-blur-sm text-white rounded-xl font-semibold border-2 border-white/20 hover:bg-white/20 transition-all">
                   Schedule Discovery Call
                 </button>
               </div>
