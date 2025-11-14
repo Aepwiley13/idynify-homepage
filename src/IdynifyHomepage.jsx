@@ -1,494 +1,567 @@
-import React, { useState, useEffect } from 'react';
-import { Rocket, Target, Zap, TrendingUp, Users, CheckCircle, ArrowRight, Menu, X, Star, BarChart3, MessageSquare, Upload, UserCheck, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Target, Zap, Users, CheckCircle, Star } from 'lucide-react';
 
-// ALL CTA BUTTONS NOW LINK TO TYPEFORM: https://form.typeform.com/to/K2Wh2A2W
-
-export default function IdynifyHomepage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    setMobileMenuOpen(false);
+const Homepage = () => {
+  // Points to your /request page
+  const REQUEST_PAGE_URL = '/request';
+  
+  const handleGetStarted = () => {
+    window.location.href = REQUEST_PAGE_URL;
   };
 
-  // Typeform URL for all CTAs
-  const typeformURL = 'https://form.typeform.com/to/K2Wh2A2W';
+  const handleContactTier = (tier) => {
+    window.location.href = `mailto:support@idynify.com?subject=Interested in ${tier}&body=Hi! I'm interested in learning more about ${tier}.`;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/95 backdrop-blur-lg shadow-xl' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-cyan-500 rounded-xl flex items-center justify-center transform hover:scale-110 transition-transform">
-                <span className="text-white font-bold text-lg">🐻</span>
-              </div>
-              <span className="text-white font-bold text-2xl tracking-wider italic bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent">
-                IDYNIFY
-              </span>
-            </div>
-
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-8">
-              <button onClick={() => scrollToSection('how-it-works')} className="text-slate-300 hover:text-white transition-colors">How It Works</button>
-              <button onClick={() => scrollToSection('pricing')} className="text-slate-300 hover:text-white transition-colors">Pricing</button>
-              <button onClick={() => scrollToSection('contact')} className="text-slate-300 hover:text-white transition-colors">Contact</button>
-              <button onClick={() => window.location.href=typeformURL} className="px-6 py-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-pink-500/50 transition-all">
-                Get Started
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-white">
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+      <nav className="container mx-auto px-6 py-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <span className="text-4xl">🐻</span>
+            <span className="text-2xl font-bold text-white">Idynify</span>
           </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 space-y-4">
-              <button onClick={() => scrollToSection('how-it-works')} className="block text-slate-300 hover:text-white transition-colors w-full text-left">How It Works</button>
-              <button onClick={() => scrollToSection('pricing')} className="block text-slate-300 hover:text-white transition-colors w-full text-left">Pricing</button>
-              <button onClick={() => scrollToSection('contact')} className="block text-slate-300 hover:text-white transition-colors w-full text-left">Contact</button>
-              <button onClick={() => window.location.href=typeformURL} className="block px-6 py-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-lg font-semibold text-center w-full">
-                Get Started
-              </button>
-            </div>
-          )}
+          <button
+            onClick={handleGetStarted}
+            className="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all"
+          >
+            Get Started
+          </button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute w-96 h-96 bg-pink-500/10 rounded-full blur-3xl -top-48 -left-48"></div>
-          <div className="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -bottom-48 -right-48"></div>
-          <div className="absolute w-64 h-64 bg-purple-500/10 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-        </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 text-center">
-          {/* Space Bear Hero */}
-          <div className="mb-8 flex justify-center">
-            <div className="relative">
-              <div className="text-9xl animate-bounce">🐻</div>
-              <div className="absolute -top-6 -right-6 text-5xl" style={{animation: 'float 3s ease-in-out infinite'}}>🚀</div>
-              <div className="absolute -bottom-4 -left-4 text-3xl animate-pulse">✨</div>
-              {/* Mission Control Badge */}
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-slate-800/80 backdrop-blur-sm border border-pink-500/30 rounded-full text-xs text-pink-400 font-semibold whitespace-nowrap">
-                MISSION CONTROL READY
-              </div>
-            </div>
+      <section className="container mx-auto px-6 py-20 text-center">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-6 inline-block">
+            <span className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-semibold border border-purple-500/30">
+              🚀 AI-Powered Customer Intelligence
+            </span>
           </div>
-
-          <div className="mt-12">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Launch Your AI Sales Agent<br />
-              <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                Solve Your Sales Mystery
-              </span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-slate-300 mb-4 max-w-4xl mx-auto">
-              AI-powered lead generation for B2B Companies
-            </p>
-            
-            {/* Industries */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-6 text-slate-400 text-sm">
-              <span className="px-3 py-1 bg-slate-800/50 rounded-full border border-slate-700">SaaS</span>
-              <span className="px-3 py-1 bg-slate-800/50 rounded-full border border-slate-700">Professional Services</span>
-              <span className="px-3 py-1 bg-slate-800/50 rounded-full border border-slate-700">Agencies</span>
-              <span className="px-3 py-1 bg-slate-800/50 rounded-full border border-slate-700">Recruiters</span>
-              <span className="px-3 py-1 bg-slate-800/50 rounded-full border border-slate-700">Consultants</span>
-              <span className="px-3 py-1 bg-slate-800/50 rounded-full border border-slate-700">Tech Vendors</span>
-            </div>
-
-            {/* Roles */}
-            <p className="text-slate-400 mb-8 text-sm">
-              Built for: <span className="text-pink-400">Account Executives</span> • <span className="text-purple-400">SDRs</span> • <span className="text-cyan-400">Founders</span> • <span className="text-pink-400">Marketers</span> • <span className="text-purple-400">GTM Leaders</span> • <span className="text-cyan-400">Sales Ops</span>
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={() => window.location.href=typeformURL} className="px-8 py-4 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition-all transform hover:scale-105">
-                Build Your ICP Now 🚀
-                <ArrowRight className="inline-block ml-2 w-5 h-5" />
-              </button>
-              <button onClick={() => window.location.href=typeformURL} className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-xl font-bold text-lg border-2 border-white/20 hover:bg-white/20 transition-all">
-                Schedule Discovery Call
-              </button>
-            </div>
-
-            {/* Social Proof */}
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-slate-400 text-sm">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-400" />
-                <span>ICP-Matched Leads</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-400" />
-                <span>AI-Powered Outreach</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-green-400" />
-                <span>Save 80% of Your Time</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-white/50 rounded-full animate-pulse"></div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 relative">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Your Sales Mission: Choose Your Path</h2>
-            <p className="text-xl text-slate-300">Three tiers. One goal: Fill your pipeline with perfect-fit leads.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                step: '01',
-                icon: Target,
-                title: 'Define Your Mission',
-                subtitle: 'ICP Brief',
-                description: 'Get crystal clear on who to target. Your AI agent needs mission parameters before launch.',
-                options: [
-                  'Complete ICP analysis',
-                  'Scoring framework (0-100)',
-                  'Then choose your path:'
-                ],
-                paths: [
-                  '→ DIY: Upload to your tools',
-                  '→ OR: Let us source leads (Tier 2)'
-                ],
-                color: 'pink',
-                price: 'Starting at $49.99/month'
-              },
-              {
-                step: '02',
-                icon: TrendingUp,
-                title: 'Get Your Leads',
-                subtitle: 'Lead Delivery (Optional)',
-                description: 'We handle the manual, time-sucking work of finding ICP-matched leads for you.',
-                options: [
-                  '90 leads/month (3/day)',
-                  'Complete profiles & scores',
-                  'Then choose your path:'
-                ],
-                paths: [
-                  '→ DIY: You do outreach',
-                  '→ OR: Autopilot outreach (Tier 3)'
-                ],
-                color: 'purple',
-                price: 'Starting at $99.99/month'
-              },
-              {
-                step: '03',
-                icon: Zap,
-                title: 'Autopilot Engaged',
-                subtitle: 'AI Outreach (Optional)',
-                description: 'Your AI agent warms leads while you sleep. You only engage when they respond.',
-                options: [
-                  'Multi-channel outreach',
-                  'A/B testing & optimization',
-                  'Result:'
-                ],
-                paths: [
-                  '→ 80% time saved',
-                  '→ You focus on closing only'
-                ],
-                color: 'cyan',
-                price: 'Starting at $149.99/month'
-              }
-            ].map((item, i) => (
-              <div key={i} className="relative group">
-                <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 hover:border-pink-500/50 transition-all transform hover:scale-105 h-full">
-                  <div className="text-6xl font-bold text-pink-500/20 mb-4">{item.step}</div>
-                  <div className={`w-16 h-16 bg-gradient-to-br ${item.color === 'pink' ? 'from-pink-500 to-pink-600' : item.color === 'purple' ? 'from-purple-500 to-purple-600' : 'from-cyan-500 to-cyan-600'} rounded-xl flex items-center justify-center mb-6`}>
-                    <item.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-1">{item.title}</h3>
-                  <p className="text-sm text-slate-400 mb-4">{item.subtitle}</p>
-                  <p className="text-slate-300 leading-relaxed mb-4">{item.description}</p>
-                  
-                  <div className="space-y-2 mb-4">
-                    {item.options.map((opt, j) => (
-                      <div key={j} className="flex items-start gap-2 text-sm text-slate-300">
-                        <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                        <span>{opt}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className={`bg-gradient-to-r ${item.color === 'pink' ? 'from-pink-900/30' : item.color === 'purple' ? 'from-purple-900/30' : 'from-cyan-900/30'} to-slate-900/30 p-3 rounded-lg border ${item.color === 'pink' ? 'border-pink-500/30' : item.color === 'purple' ? 'border-purple-500/30' : 'border-cyan-500/30'}`}>
-                    {item.paths.map((path, j) => (
-                      <div key={j} className="text-xs text-slate-300 mb-1 last:mb-0">{path}</div>
-                    ))}
-                  </div>
-
-                  <div className="mt-4 pt-4 border-t border-slate-700">
-                    <div className="text-lg font-bold text-white">{item.price}</div>
-                  </div>
-                </div>
-                {i < 2 && (
-                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-8 h-8 text-pink-500" />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services/Pricing Section */}
-      <section id="pricing" className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Choose Your Mission Level</h2>
-            <p className="text-xl text-slate-300">Start with clarity, scale with automation</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                tier: 'Tier 1',
-                name: 'ICP Brief',
-                price: '$49.99',
-                period: '/month',
-                priceStart: 'Starting at',
-                description: 'Define your mission parameters',
-                priceDetail: 'Custom pricing available for businesses',
-                features: [
-                  'Complete ICP analysis & scoring',
-                  'Messaging guidelines & positioning',
-                  'Where to find them (channels)',
-                  'Buyer trigger identification',
-                  'Anti-profile (who to avoid)',
-                  'DIY or upgrade to Tier 2'
-                ],
-                cta: 'Define Your Mission',
-                popular: false,
-                gradient: 'from-pink-500 to-pink-600'
-              },
-              {
-                tier: 'Tier 2',
-                name: 'Lead Delivery',
-                price: '$99.99',
-                period: '/month',
-                priceStart: 'Starting at',
-                description: 'We source leads on your behalf',
-                priceDetail: 'Custom pricing available for businesses',
-                features: [
-                  '90 leads per month (3/day)',
-                  'Complete lead profiles & contact info',
-                  'ICP score for each lead',
-                  'Personalized outreach angles',
-                  'Buying trigger analysis',
-                  'DIY outreach or upgrade to Tier 3'
-                ],
-                cta: 'Get Leads Delivered',
-                popular: false,
-                gradient: 'from-purple-500 to-purple-600'
-              },
-              {
-                tier: 'Tier 3',
-                name: 'AI Outreach',
-                price: '$149.99',
-                period: '/month',
-                priceStart: 'Starting at',
-                description: 'Full autopilot - save 80% of your time',
-                priceDetail: 'Custom pricing available for businesses',
-                features: [
-                  'AI handles all outreach for you',
-                  'Multi-channel (email, SMS, LinkedIn)',
-                  'A/B testing & optimization',
-                  'Response notifications',
-                  'CRM integration ready',
-                  'Calling scripts when leads respond'
-                ],
-                cta: 'Engage Autopilot',
-                popular: true,
-                gradient: 'from-cyan-500 to-cyan-600'
-              }
-            ].map((tier, i) => (
-              <div key={i} className={`relative ${tier.popular ? 'md:-mt-8 md:mb-8' : ''}`}>
-                {tier.popular && (
-                  <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 px-4 py-1.5 bg-gradient-to-r from-pink-500 to-cyan-500 text-white text-sm font-bold rounded-full z-10 shadow-lg">
-                    ⭐ MOST POPULAR
-                  </div>
-                )}
-                <button 
-                  onClick={() => window.location.href=typeformURL}
-                  className={`w-full bg-slate-800/50 backdrop-blur-sm border-2 ${tier.popular ? 'border-pink-500' : 'border-slate-700'} rounded-2xl p-8 hover:border-pink-500 hover:shadow-2xl hover:shadow-pink-500/20 transition-all h-full flex flex-col text-left transform hover:scale-105 cursor-pointer`}
-                >
-                  <div className="mb-6">
-                    <div className="text-sm font-semibold text-slate-400 mb-2">{tier.tier}</div>
-                    <h3 className="text-3xl font-bold text-white mb-2">{tier.name}</h3>
-                    {tier.priceStart && (
-                      <div className="text-xs text-slate-400 mb-1">{tier.priceStart}</div>
-                    )}
-                    <div className="flex items-baseline gap-1 mb-2">
-                      <span className="text-4xl font-bold text-white">{tier.price}</span>
-                      <span className="text-slate-400 text-sm">{tier.period}</span>
-                    </div>
-                    {tier.priceDetail && (
-                      <p className="text-xs text-slate-400 mb-3 leading-relaxed">{tier.priceDetail}</p>
-                    )}
-                    <p className="text-slate-300">{tier.description}</p>
-                  </div>
-
-                  <div className="flex-grow mb-8">
-                    <div className="space-y-3">
-                      {tier.features.map((feature, j) => (
-                        <div key={j} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                          <span className="text-slate-300 text-sm">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className={`px-6 py-4 bg-gradient-to-r ${tier.gradient} text-white rounded-xl font-bold text-center flex items-center justify-center gap-2 group-hover:shadow-xl transition-all`}>
-                    <span>{tier.cta}</span>
-                    <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Social Proof / Stats Section */}
-      <section className="py-24 relative">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="bg-gradient-to-r from-pink-500/10 to-cyan-500/10 backdrop-blur-sm border border-pink-500/30 rounded-3xl p-12">
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-white mb-2">Mission Success Metrics</h3>
-              <p className="text-slate-300">What to expect when your AI agent launches</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-12 text-center">
-              <div>
-                <div className="text-5xl font-bold bg-gradient-to-r from-pink-400 to-pink-600 bg-clip-text text-transparent mb-2">85+</div>
-                <div className="text-slate-300">ICP Score = Perfect Fit</div>
-              </div>
-              <div>
-                <div className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent mb-2">90</div>
-                <div className="text-slate-300">Leads Delivered Monthly</div>
-              </div>
-              <div>
-                <div className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent mb-2">80%</div>
-                <div className="text-slate-300">Time Saved with Autopilot</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section id="contact" className="py-24 relative">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="text-6xl mb-8">🚀</div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Launch Your AI Sales Agent?</h2>
-          <p className="text-xl text-slate-300 mb-4">
-            Start with an ICP Brief to define your mission parameters.
-          </p>
-          <p className="text-lg text-slate-400 mb-12">
-            Then choose your path: DIY, Lead Delivery, or Full Autopilot
+          
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            Stop Wasting Time on
+            <span className="bg-gradient-to-r from-pink-400 to-purple-400 text-transparent bg-clip-text"> Bad-Fit Leads</span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+            Get a custom Ideal Customer Profile (ICP) in 48 hours. Know exactly who to target, what to say, and where to find them.
           </p>
           
-          <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 max-w-md mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-2">Launch Sequence</h3>
-            <p className="text-sm text-slate-400 mb-6">Tell us about your sales mission and we'll help you succeed</p>
-            <div className="space-y-4">
-              <input 
-                type="text" 
-                placeholder="Your Name" 
-                className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-pink-500 focus:outline-none transition-colors"
-              />
-              <input 
-                type="email" 
-                placeholder="Email Address" 
-                className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-pink-500 focus:outline-none transition-colors"
-              />
-              <input 
-                type="text" 
-                placeholder="Company Name" 
-                className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-pink-500 focus:outline-none transition-colors"
-              />
-              <textarea 
-                placeholder="Tell us about your ideal customer and sales challenges..." 
-                rows={4}
-                className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-pink-500 focus:outline-none resize-none transition-colors"
-              ></textarea>
-              
-              <div className="flex flex-col gap-3">
-                <button onClick={() => window.location.href=typeformURL} className="w-full px-8 py-4 bg-gradient-to-r from-pink-500 to-cyan-500 text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-pink-500/50 transition-all transform hover:scale-105">
-                  Build My ICP Brief 🚀
-                  <Sparkles className="inline-block ml-2 w-5 h-5" />
-                </button>
-                <button onClick={() => window.location.href=typeformURL} className="w-full px-8 py-3 bg-white/10 backdrop-blur-sm text-white rounded-xl font-semibold border-2 border-white/20 hover:bg-white/20 transition-all">
-                  Schedule Discovery Call
-                </button>
-              </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <button
+              onClick={handleGetStarted}
+              className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-lg font-bold rounded-full hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2"
+            >
+              Build Your ICP Now
+              <ArrowRight size={20} />
+            </button>
+            <button
+              onClick={() => document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-4 bg-white/10 text-white text-lg font-semibold rounded-full hover:bg-white/20 transition-all border border-white/20"
+            >
+              See How It Works
+            </button>
+          </div>
+
+          <div className="flex items-center justify-center gap-8 text-gray-400">
+            <div className="flex items-center gap-2">
+              <CheckCircle size={20} className="text-green-400" />
+              <span>15-min setup</span>
             </div>
-            <p className="text-xs text-slate-400 mt-4">
-              🚀 Mission Control responds within 24 hours
+            <div className="flex items-center gap-2">
+              <CheckCircle size={20} className="text-green-400" />
+              <span>48-hour delivery</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle size={20} className="text-green-400" />
+              <span>Cancel anytime</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof Bar */}
+      <section className="container mx-auto px-6 py-8">
+        <div className="max-w-4xl mx-auto bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
+          <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-white mb-2">10-20x</div>
+              <div className="text-gray-400">ROI on Investment</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-white mb-2">70-95%</div>
+              <div className="text-gray-400">Cheaper than Consultants</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-white mb-2">48hrs</div>
+              <div className="text-gray-400">Custom ICP Delivery</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how-it-works" className="container mx-auto px-6 py-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              🎯 How It Works
+            </h2>
+            <p className="text-xl text-gray-300">
+              From questionnaire to qualified leads in 4 simple steps
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              {
+                step: '1',
+                icon: '📋',
+                title: 'Fill Questionnaire',
+                description: '15-minute questionnaire about your business and ideal customer',
+              },
+              {
+                step: '2',
+                icon: '🐻',
+                title: 'Barry Analyzes',
+                description: 'Our AI analyzes your responses and identifies patterns',
+              },
+              {
+                step: '3',
+                icon: '📊',
+                title: 'Get Custom ICP',
+                description: '8-section ICP delivered to your private dashboard in 48 hours',
+              },
+              {
+                step: '4',
+                icon: '🚀',
+                title: 'Fill Pipeline',
+                description: 'Use scoring framework and messaging templates to close deals',
+              },
+            ].map((item) => (
+              <div key={item.step} className="relative">
+                <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 hover:border-purple-500/50 transition-all">
+                  <div className="text-5xl mb-4">{item.icon}</div>
+                  <div className="text-purple-400 font-bold mb-2">Step {item.step}</div>
+                  <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                  <p className="text-gray-400">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <button
+              onClick={handleGetStarted}
+              className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-lg font-bold rounded-full hover:shadow-2xl hover:scale-105 transition-all"
+            >
+              Start Your ICP Now →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* What You Get */}
+      <section className="container mx-auto px-6 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              What's Inside Your ICP
+            </h2>
+            <p className="text-xl text-gray-300">
+              8 comprehensive sections covering everything you need to know
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                title: 'Executive Summary',
+                description: 'Who to target at-a-glance with perfect-fit indicators and anti-profile',
+                icon: <Target className="text-purple-400" size={24} />,
+              },
+              {
+                title: 'Firmographics',
+                description: 'Company size, stage, budget, industries, and decision makers',
+                icon: <Users className="text-pink-400" size={24} />,
+              },
+              {
+                title: 'Psychographics',
+                description: 'Top 5 pain points, core values, goals, and language they use',
+                icon: '🧠',
+              },
+              {
+                title: 'Behavioral Signals',
+                description: 'Hot buying triggers, research patterns, and timing strategy',
+                icon: '🎯',
+              },
+              {
+                title: 'ICP Scoring (0-100)',
+                description: 'Weighted qualification framework to prioritize your best leads',
+                icon: '📊',
+              },
+              {
+                title: 'Messaging Guidelines',
+                description: 'Value proposition, cold email templates, and objection handling',
+                icon: '💬',
+              },
+              {
+                title: 'Channel Strategy',
+                description: 'Where to find them, communities, events, and LinkedIn tactics',
+                icon: '🔍',
+              },
+              {
+                title: 'Action Plan',
+                description: 'DIY roadmap or done-for-you options with clear next steps',
+                icon: <Zap className="text-yellow-400" size={24} />,
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10 hover:border-purple-500/50 transition-all"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="text-3xl">{typeof item.icon === 'string' ? item.icon : item.icon}</div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-gray-400">{item.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="container mx-auto px-6 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Choose Your Mission
+            </h2>
+            <p className="text-xl text-gray-300">
+              From DIY to full autopilot - we've got you covered
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Tier 1 */}
+            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-purple-500/50 transition-all">
+              <div className="text-center mb-6">
+                <div className="text-purple-400 font-semibold mb-2">TIER 1</div>
+                <h3 className="text-2xl font-bold text-white mb-4">ICP Brief</h3>
+                <div className="mb-4">
+                  <span className="text-5xl font-bold text-white">$49.99</span>
+                  <span className="text-gray-400">/month</span>
+                </div>
+                <p className="text-gray-400 text-sm">Perfect for DIY prospectors</p>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {[
+                  'Custom ICP in 48 hours',
+                  '8 comprehensive sections',
+                  'Scoring framework (0-100)',
+                  'Messaging templates',
+                  'Channel strategy',
+                  'Password-protected dashboard',
+                  'Biweekly updates',
+                ].map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3 text-gray-300">
+                    <CheckCircle size={20} className="text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={handleGetStarted}
+                className="w-full py-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold rounded-full hover:shadow-xl hover:scale-105 transition-all"
+              >
+                Get Started →
+              </button>
+
+              <p className="text-center text-gray-500 text-xs mt-4">Cancel anytime</p>
+            </div>
+
+            {/* Tier 2 */}
+            <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg rounded-2xl p-8 border-2 border-purple-500 relative transform scale-105">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                MOST POPULAR
+              </div>
+              
+              <div className="text-center mb-6">
+                <div className="text-purple-400 font-semibold mb-2">TIER 2</div>
+                <h3 className="text-2xl font-bold text-white mb-4">Lead Delivery</h3>
+                <div className="mb-4">
+                  <span className="text-5xl font-bold text-white">$99.99</span>
+                  <span className="text-gray-400">/month</span>
+                </div>
+                <p className="text-gray-400 text-sm">We find the leads for you</p>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {[
+                  'Everything in Tier 1',
+                  '90 scored leads per month',
+                  'LinkedIn profiles with emails',
+                  'Pre-qualified using your ICP',
+                  'Organized by score (70-100)',
+                  'Ready for outreach',
+                  'Saves 15-20 hours/month',
+                ].map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3 text-gray-300">
+                    <CheckCircle size={20} className="text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={() => handleContactTier('Tier 2 - Lead Delivery')}
+                className="w-full py-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold rounded-full hover:shadow-xl hover:scale-105 transition-all"
+              >
+                Contact Us →
+              </button>
+
+              <p className="text-center text-gray-500 text-xs mt-4">Limited spots available</p>
+            </div>
+
+            {/* Tier 3 */}
+            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-purple-500/50 transition-all">
+              <div className="text-center mb-6">
+                <div className="text-purple-400 font-semibold mb-2">TIER 3</div>
+                <h3 className="text-2xl font-bold text-white mb-4">AI Autopilot</h3>
+                <div className="mb-4">
+                  <span className="text-5xl font-bold text-white">$149.99</span>
+                  <span className="text-gray-400">/month</span>
+                </div>
+                <p className="text-gray-400 text-sm">We do it all for you</p>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {[
+                  'Everything in Tier 2',
+                  'AI-powered personalized outreach',
+                  'Multi-channel sequences',
+                  'Meeting booking automation',
+                  'CRM integration',
+                  'Weekly performance reports',
+                  'Replaces $3K/mo SDR',
+                ].map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3 text-gray-300">
+                    <CheckCircle size={20} className="text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={() => handleContactTier('Tier 3 - AI Autopilot')}
+                className="w-full py-4 bg-white/10 text-white font-bold rounded-full hover:bg-white/20 transition-all border border-white/20"
+              >
+                Contact Us →
+              </button>
+
+              <p className="text-center text-gray-500 text-xs mt-4">Custom onboarding included</p>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-400 mb-4">Not sure which tier? Start with Tier 1 and upgrade anytime.</p>
+            <button
+              onClick={handleGetStarted}
+              className="text-purple-400 hover:text-purple-300 font-semibold"
+            >
+              See detailed comparison →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="container mx-auto px-6 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              What People Will Say
+            </h2>
+            <p className="text-gray-400">(Coming soon from real customers!)</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                quote: "Before Idynify, we were wasting 60% of our time on bad-fit leads. Barry helped us focus on companies that actually convert. We closed 3 deals in the first month - ROI was 40x.",
+                author: "Sarah",
+                title: "CEO at SaaS Startup",
+              },
+              {
+                quote: "The ICP scoring framework alone was worth 10x the price. We now know exactly who to target and our close rate went from 8% to 23%.",
+                author: "Mike",
+                title: "VP Sales at B2B Agency",
+              },
+              {
+                quote: "I tried to build our ICP myself for weeks. Barry did it in 48 hours and it was better than anything I could have made.",
+                author: "Jessica",
+                title: "Founder at Consulting Firm",
+              },
+            ].map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10"
+              >
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-6 italic">"{testimonial.quote}"</p>
+                <div>
+                  <div className="font-semibold text-white">{testimonial.author}</div>
+                  <div className="text-sm text-gray-400">{testimonial.title}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Comparison */}
+      <section className="container mx-auto px-6 py-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Why Idynify vs. Alternatives?
+            </h2>
+          </div>
+
+          <div className="bg-white/5 backdrop-blur-lg rounded-2xl overflow-hidden border border-white/10">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="p-4 text-left text-gray-400 font-semibold"></th>
+                  <th className="p-4 text-center text-purple-400 font-bold">Idynify</th>
+                  <th className="p-4 text-center text-gray-400 font-semibold">Consultants</th>
+                  <th className="p-4 text-center text-gray-400 font-semibold">DIY</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-white/10">
+                  <td className="p-4 text-gray-300">Price</td>
+                  <td className="p-4 text-center text-white font-semibold">$49-149/mo</td>
+                  <td className="p-4 text-center text-gray-400">$5K-50K</td>
+                  <td className="p-4 text-center text-gray-400">Free</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="p-4 text-gray-300">Delivery Time</td>
+                  <td className="p-4 text-center text-white font-semibold">48 hours</td>
+                  <td className="p-4 text-center text-gray-400">2-4 weeks</td>
+                  <td className="p-4 text-center text-gray-400">40+ hours</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="p-4 text-gray-300">Updates</td>
+                  <td className="p-4 text-center text-white font-semibold">Biweekly</td>
+                  <td className="p-4 text-center text-gray-400">Never</td>
+                  <td className="p-4 text-center text-gray-400">Manual</td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="p-4 text-gray-300">Lead Delivery</td>
+                  <td className="p-4 text-center">
+                    <CheckCircle className="text-green-400 mx-auto" size={20} />
+                  </td>
+                  <td className="p-4 text-center text-gray-400">❌</td>
+                  <td className="p-4 text-center text-gray-400">❌</td>
+                </tr>
+                <tr>
+                  <td className="p-4 text-gray-300">AI-Powered</td>
+                  <td className="p-4 text-center">
+                    <CheckCircle className="text-green-400 mx-auto" size={20} />
+                  </td>
+                  <td className="p-4 text-center text-gray-400">❌</td>
+                  <td className="p-4 text-center text-gray-400">❌</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="container mx-auto px-6 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg rounded-3xl p-12 border border-purple-500/30">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Ready to Stop Wasting Time on Bad Leads?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Get your custom ICP in 48 hours. Know exactly who to target and how to reach them.
+            </p>
+            <button
+              onClick={handleGetStarted}
+              className="px-12 py-5 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-xl font-bold rounded-full hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-3"
+            >
+              Build Your ICP Now
+              <ArrowRight size={24} />
+            </button>
+            <p className="text-gray-400 mt-6">
+              ✅ 15-minute setup • ✅ Cancel anytime • ✅ Money-back guarantee
             </p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-slate-800 py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">🐻</span>
+      <footer className="container mx-auto px-6 py-12 border-t border-white/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <span className="text-3xl">🐻</span>
+                <span className="text-xl font-bold text-white">Idynify</span>
               </div>
-              <div>
-                <span className="text-white font-bold text-xl tracking-wider italic">IDYNIFY</span>
-                <p className="text-xs text-slate-400">Mission Control for B2B Sales</p>
-              </div>
+              <p className="text-gray-400 text-sm">
+                AI-powered customer intelligence to help B2B companies fill their pipeline.
+              </p>
             </div>
-            <div className="text-slate-400 text-sm text-center">
-              <p>© 2025 Idynify. All rights reserved.</p>
-              <p className="text-xs mt-1">Your AI Sales Agent Awaits 🚀</p>
+            
+            <div>
+              <h4 className="text-white font-semibold mb-4">Product</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#how-it-works" className="hover:text-purple-400">How It Works</a></li>
+                <li><a href="#pricing" className="hover:text-purple-400">Pricing</a></li>
+                <li><button onClick={handleGetStarted} className="hover:text-purple-400">Get Started</button></li>
+              </ul>
             </div>
-            <div className="flex gap-6 text-slate-400 text-sm">
-              <button onClick={() => scrollToSection('contact')} className="hover:text-white transition-colors">Privacy</button>
-              <button onClick={() => scrollToSection('contact')} className="hover:text-white transition-colors">Terms</button>
-              <button onClick={() => scrollToSection('contact')} className="hover:text-white transition-colors">Contact</button>
+            
+            <div>
+              <h4 className="text-white font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="mailto:support@idynify.com" className="hover:text-purple-400">Contact</a></li>
+                <li><a href="#" className="hover:text-purple-400">About</a></li>
+              </ul>
             </div>
+            
+            <div>
+              <h4 className="text-white font-semibold mb-4">Connect</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="#" className="hover:text-purple-400">LinkedIn</a></li>
+                <li><a href="#" className="hover:text-purple-400">Twitter</a></li>
+                <li><a href="mailto:support@idynify.com" className="hover:text-purple-400">support@idynify.com</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-white/10 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 Idynify. Built with 🐻 by Barry AI. All rights reserved.</p>
           </div>
         </div>
       </footer>
-
-      {/* Custom CSS for float animation */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(15deg); }
-        }
-      `}</style>
     </div>
   );
-}
+};
+
+export default Homepage;
