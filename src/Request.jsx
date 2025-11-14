@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../lib/firebase';
+import { db } from './lib/firebase';
 
 export default function Request() {
   const { register, handleSubmit, formState: { errors } } = useForm();
