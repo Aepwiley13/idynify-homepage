@@ -5,7 +5,8 @@ import MountainsideICP from './MountainsideICP.jsx';
 import Request from './Request.jsx';
 import AdminDashboard from './AdminDashboard.jsx';
 import Signup from './Signup.jsx';
-import Login from './Login.jsx';  // ← NEW
+import Login from './Login.jsx';
+import Dashboard from './Dashboard.jsx';  // ← NEW
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route path="/request" element={<Request />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />  {/* ← NEW */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />  {/* ← NEW */}
       </Routes>
     </Router>
   );
