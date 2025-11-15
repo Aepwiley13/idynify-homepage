@@ -22,7 +22,7 @@ const AdminDashboard = () => {
     rejected: 0
   });
 
-  const ADMIN_PASSWORD = 'BarryMissionControl2024'; // CHANGE THIS!
+  const ADMIN_PASSWORD = '3xkbd84fckv8rc';
 
   // Authentication
   const handleLogin = (e) => {
