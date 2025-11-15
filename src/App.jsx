@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import IdynifyHomepage from './IdynifyHomepage.jsx';
-import MountainsideICP from './MountainsideICP.jsx';
-import Request from './Request.jsx';
-import AdminDashboard from './AdminDashboard.jsx';
-import Signup from './Signup.jsx';
-import Login from './Login.jsx';
-import Dashboard from './Dashboard.jsx';
-import ICPQuestionnaire from './ICPQuestionnaire.jsx';  // ← NEW
-import ICPQuestionnaireSuccess from './ICPQuestionnaireSuccess.jsx';  // ← NEW
+import IdynifyHomepage from './IdynifyHomepage';
+import MountainsideICP from './MountainsideICP';
+import Request from './Request';
+import AdminDashboard from './AdminDashboard';
+import Signup from './Signup';
+import Login from './Login';
+import Dashboard from './Dashboard';
+import ICPQuestionnaire from './ICPQuestionnaire';
+import ICPQuestionnaireSuccess from './ICPQuestionnaireSuccess';
 
 function App() {
   return (
@@ -21,8 +21,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/icp-questionnaire" element={<ICPQuestionnaire />} />  {/* ← NEW */}
-        <Route path="/icp-success" element={<ICPQuestionnaireSuccess />} />  {/* ← NEW */}
+        <Route path="/icp-questionnaire" element={<ICPQuestionnaire />} />
+        <Route path="/icp-success" element={<ICPQuestionnaireSuccess />} />
       </Routes>
     </Router>
   );
