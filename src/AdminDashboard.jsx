@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, updateDoc, doc, query, orderBy } from 'firebase/firestore';
-import { db } from './firebase'; // Adjust path based on your Firebase config location
+import { db } from './lib/firebase';
 
 const AdminDashboard = () => {
   // Auth State
