@@ -6,7 +6,9 @@ import Request from './Request.jsx';
 import AdminDashboard from './AdminDashboard.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
-import Dashboard from './Dashboard.jsx';  // ← NEW
+import Dashboard from './Dashboard.jsx';
+import ICPQuestionnaire from './ICPQuestionnaire.jsx';  // ← NEW
+import ICPQuestionnaireSuccess from './ICPQuestionnaireSuccess.jsx';  // ← NEW
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />  {/* ← NEW */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/icp-questionnaire" element={<ICPQuestionnaire />} />  {/* ← NEW */}
+        <Route path="/icp-success" element={<ICPQuestionnaireSuccess />} />  {/* ← NEW */}
       </Routes>
     </Router>
   );
