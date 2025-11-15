@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from './lib/firebase';
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -26,6 +28,26 @@ export default function Dashboard() {
         }
         
         setLoading(false);
+
+        // Check if just submitted ICP
+        if (searchParams.get('icp-submitted') === 'true') {
+          setShowSuccess(true);
+          
+          // Update Firestore to mark ICP as submitted
+          try {
+            const userRef = doc(db, 'users', currentUser.uid);
+            await updateDoc(userRef, {
+              icpStarted: true,
+              icpSubmitted: true,
+              icpSubmittedAt: new Date()
+            });
+          } catch (error) {
+            console.error('Error updating ICP status:', error);
+          }
+          
+          // Auto-hide success message after 10 seconds
+          setTimeout(() => setShowSuccess(false), 10000);
+        }
       } else {
         // Not logged in, redirect to login
         navigate('/login');
@@ -33,7 +55,7 @@ export default function Dashboard() {
     });
 
     return () => unsubscribe();
-  }, [navigate]);
+  }, [navigate, searchParams]);
 
   const handleLogout = async () => {
     try {
@@ -142,6 +164,36 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <main className="relative z-10 max-w-7xl mx-auto px-6 py-12">
+        
+        {/* SUCCESS BANNER - NEW! */}
+        {showSuccess && (
+          <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-500/50 rounded-2xl p-6 mb-8 shadow-2xl backdrop-blur-xl animate-pulse">
+            <div className="flex items-start justify-between">
+              <div className="flex items-start gap-4">
+                <div className="text-6xl animate-bounce">🎉</div>
+                <div className="flex-1">
+                  <div className="text-white font-black text-2xl mb-2">
+                    ICP Questionnaire Submitted Successfully!
+                  </div>
+                  <div className="text-green-200 mb-3 text-lg">
+                    Barry AI is processing your 79 responses. You'll receive your custom ICP within 48 hours.
+                  </div>
+                  <div className="flex items-center gap-2 text-green-300">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-mono">Watch your email for the notification</span>
+                  </div>
+                </div>
+              </div>
+              <button 
+                onClick={() => setShowSuccess(false)}
+                className="text-white/70 hover:text-white text-3xl transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Welcome Section */}
         <div className="text-center mb-12">
           <div className="text-8xl mb-6" style={{ animation: 'floatBear 6s ease-in-out infinite' }}>🐻</div>
