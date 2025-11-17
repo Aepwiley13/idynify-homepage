@@ -1,18 +1,19 @@
+// src/lib/firebase.js
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';  // ← IMPORTANT!
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyAGevgoZhyDskmaHzHO1eXvQrKqa0okSD4",
+  authDomain: "idynify-icp.firebaseapp.com",
+  projectId: "idynify-icp",
+  storageBucket: "idynify-icp.firebasestorage.app",
+  messagingSenderId: "828638115993",
+  appId: "1:828638115993:web:837f6dc6ac81828f6b2008",
+  measurementId: "G-80HQFHQQBY"
 };
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-export const auth = getAuth(app);  // ← ADD THIS LINE!
+export const auth = getAuth(app);
 export default app;
