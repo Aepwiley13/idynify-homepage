@@ -118,7 +118,7 @@ export default function Signup() {
       });
 
       // Success! Redirect to dashboard
-      navigate('/dashboard');
+      navigate('/icp-questionnaire');
     } catch (err) {
       console.error('Signup error:', err);
       

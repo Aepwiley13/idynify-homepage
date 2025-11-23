@@ -71,8 +71,7 @@ export default function Dashboard() {
   };
 
   const handleViewICP = () => {
-    // Navigate to their custom ICP page (similar to Mountainside)
-    navigate(`/${userData.company.toLowerCase().replace(/\s+/g, '-')}-icp`);
+    navigate('/dashboard/icp'); // ← FIXED: Now goes to the correct route
   };
 
   if (loading) {
