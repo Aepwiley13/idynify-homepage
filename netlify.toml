@@ -16,5 +16,11 @@
   status = 200
 
 [functions."generate-icp"]
+[functions."generate-icp"]
   timeout = 900
+  timeout = 900[functions."generate-icp"]
+  timeout = 900
+[functions."generate-icp"]
+  timeout = 26
+
 
