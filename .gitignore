@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+.env
+
+# Local Netlify folder
+.netlify
+node_modules/
+idynify-scout/
+node_modules/
+**/node_modules/

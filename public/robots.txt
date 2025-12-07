@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Sitemap: https://idynify.com/sitemap.xml
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
